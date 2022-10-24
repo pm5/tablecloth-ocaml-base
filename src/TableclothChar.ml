@@ -1,12 +1,6 @@
-module Comparator = TableclothComparator
+module Comparator = Base.Comparator
 
 type t = char
-
-include TableclothComparator.Make (struct
-  type nonrec t = t
-
-  let compare = compare
-end)
 
 let to_code (c : char) : int = Base.Char.to_int c
 
@@ -45,3 +39,14 @@ let is_whitespace = Base.Char.is_whitespace
 let equal : char -> char -> bool = ( = )
 
 let compare = compare
+
+let sexp_of_t = Base.Char.sexp_of_t
+
+include Base.Comparator.Make (struct
+  type nonrec t = t
+
+  let compare = compare
+  let sexp_of_t = sexp_of_t
+end)
+
+type identity = comparator_witness

@@ -61,7 +61,7 @@ val initialize : int -> f:(int -> char) -> string
 (** {1 Basic operations} *)
 
 val get : string -> int -> char
-(** Get the character at the specified index 
+(** Get the character at the specified index
 
     {3 Exceptions}
 
@@ -367,4 +367,4 @@ val compare : string -> string -> int
 (** The unique identity for {!Comparator} *)
 type identity
 
-val comparator : (t, identity) TableclothComparator.t
+val comparator : (t, identity) Base.Comparator.t

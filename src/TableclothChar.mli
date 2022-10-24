@@ -38,7 +38,7 @@ val from_code : int -> char option
 *)
 
 val from_string : string -> char option
-(** Converts a string to character. 
+(** Converts a string to character.
 
     Returns [None] when the [string] isn't of length one.
 
@@ -207,4 +207,4 @@ val compare : t -> t -> int
 (** The unique identity for {!Comparator} *)
 type identity
 
-val comparator : (t, identity) TableclothComparator.t
+val comparator : (t, identity) Base.Comparator.t

@@ -1,10 +1,6 @@
+module Comparator = Base.Comparator
+
 type t = int
-
-include TableclothComparator.Make (struct
-  type nonrec t = t
-
-  let compare = compare
-end)
 
 let minimum_value = Base.Int.min_value
 
@@ -91,3 +87,14 @@ let from_string str = try Some (int_of_string str) with _ -> None
 let equal = ( = )
 
 let compare = compare
+
+let sexp_of_t = Base.Int.sexp_of_t
+
+include Base.Comparator.Make (struct
+  type nonrec t = t
+
+  let compare = compare
+  let sexp_of_t = sexp_of_t
+end)
+
+type identity = comparator_witness

@@ -1,12 +1,6 @@
-module Comparator = TableclothComparator
+module Comparator = Base.Comparator
 
 type t = string
-
-include TableclothComparator.Make (struct
-  type nonrec t = t
-
-  let compare = compare
-end)
 
 let initialize length ~f = Base.List.init length ~f |> Base.String.of_char_list
 
@@ -146,3 +140,12 @@ let fold s ~initial ~f = Base.String.fold s ~init:initial ~f
 let equal = Base.String.equal
 
 let compare = Base.String.compare
+
+include Base.Comparator.Make (struct
+  type nonrec t = t
+
+  let compare = compare
+  let sexp_of_t = Base.String.sexp_of_t
+end)
+
+type identity = comparator_witness
